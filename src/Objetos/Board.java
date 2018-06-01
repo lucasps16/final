@@ -8,13 +8,14 @@ package Objetos;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.concurrent.TimeUnit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
+
 
 /**
  *
@@ -29,11 +30,12 @@ public class Board extends JPanel implements ActionListener, MouseListener {
     private Caja[] caja = new Caja[nCajas];
     private MouseEvent e;
     private Graphics g;
-    
+    private int disparos = 2;
     public int[] cont = new int[nCajas];
     //Angulo =  Math.toDegrees(Math.atan2(e.getY() -pelota.getY(), (e.getX() - pelota.getX())));
     private double angulo;
     private int x,y,radio,vel;
+    private int puntaje = 0;
     public static boolean click =  false;
     
 
@@ -45,12 +47,12 @@ public class Board extends JPanel implements ActionListener, MouseListener {
 
         radio = 10;
         x = 205;
-        y = 650;
+        y = 575;
         vel = 10;
         pelotaTemp = new Pelota(x, y, radio, vel, 0,Color.white);
-        caja[0] = new Caja(200, 100, 25,1, Color.blue, Color.orange);
-        caja[1] = new Caja(252, 100, 25, 2, Color.orange, Color.orange);
-        caja[2] = new Caja(252, 125, 25, 3, Color.white, Color.orange);
+        caja[0] = new Caja(200, 100, 25,1, Color.blue, Color.gray);
+        caja[1] = new Caja(252, 100, 25, 2, Color.orange, Color.gray);
+        caja[2] = new Caja(252, 125, 25, 3, Color.white, Color.gray);
         contenedor = new Contenedor(0, 0, 600, 700);
         
     }
@@ -78,17 +80,41 @@ public class Board extends JPanel implements ActionListener, MouseListener {
 //********entonces unicamente se cargara la imagen desde los archivos del proyecto.
 //*********************************************************************************************************
         super.paintComponent(g);
+       
+        
+        
         Image fondo = loadImage("unal_1.jpg");
-        Image ad = loadImage("ad.jpg");
+        Image ad = loadImage("ad2.jpg");
         contenedor.draw(g);
         g.drawImage(ad, 0, 0, null);
-        g.drawImage(fondo, 0, 100, null);
+        g.drawImage(fondo, 0, 50, null);
+        
+        //Rectangulo en donde esta la información del juego.
+        g.setColor(Color.black);
+        g.fillRect(-1, 625, 602, 27);
+        g.setColor(Color.white);
+        g.setFont(new Font("Arial", Font.BOLD, 25));
+        g.drawString("Puntaje:" + puntaje, 5, 630);
+        
+        
         for (Caja caja1 : caja) {
             caja1.draw(g);  
         }
         pelotaTemp.draw(g);
         g.setColor(Color.WHITE);
-      
+        
+        if(disparos <= -1){
+            g.setColor(Color.black);
+            g.fillRect(0, 0, 600, 750);
+//            try {
+//                TimeUnit.SECONDS.sleep(0.1);
+//            } catch (InterruptedException ex) {
+//            }
+            g.setColor(Color.red);
+            g.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 40));
+            g.drawString("PERDISTE", 200, 325);
+             vel = 0;
+        }
     }
 
  public Image loadImage(String imageName){
@@ -102,20 +128,22 @@ public class Board extends JPanel implements ActionListener, MouseListener {
         if(pelota.getRect().intersects(caja[i].getRect())){
             if(pelota.getX()<caja[i].getMaxX()){
                pelota.setVelX(-pelota.getVelX());
-               caja[i].setContador(caja[i].getContador()-1);
+               
                 
             }
             if(pelota.getY()<caja[i].getMaxY()+15){
                 pelota.setVelY(-pelota.getVelY());
                 
             }
-            cont[i]++;
-            System.out.println(cont[i]);
-            if(caja[i].getContador() == 0){//Destruye la caja
+            caja[i].setContador(caja[i].getContador()-1);
+            cont[i]++; //Cuenta el numero de veces que una caja ha sido golpeada
+            
+            if(caja[i].getContador() <= 0){//Destruye la caja
              caja[i].setMaxX(0);
              caja[i].setMinX(0);
              caja[i].setMinY(0);
              caja[i].setMaxY(0);
+             puntaje = puntaje + 100;
         }
       }
     }
@@ -126,6 +154,7 @@ public class Board extends JPanel implements ActionListener, MouseListener {
 //        }  
 //      }
     }
+    
     
     public void gameStart() {
         Thread gameThread = new Thread() {
@@ -155,7 +184,7 @@ public class Board extends JPanel implements ActionListener, MouseListener {
         colisionCaja();
         x = (int) pelota.getX();
         y = (int) pelota.getY();
-             
+        
       }
 
     @Override
@@ -168,6 +197,7 @@ public class Board extends JPanel implements ActionListener, MouseListener {
         pelota.setVelX((float) (vel * Math.cos(Math.toRadians(angulo))));
         pelota.setVelY((float) (-vel * (float) Math.sin(Math.toRadians(angulo))));
         gameStart();
+        disparos --;
         
     }
 
@@ -188,11 +218,11 @@ public class Board extends JPanel implements ActionListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        
     }
 }

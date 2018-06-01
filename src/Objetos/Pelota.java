@@ -87,8 +87,10 @@ public class Pelota {
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillOval((int) (x - radio), (int) (y - radio), (int) (2 * radio), (int) (2 * radio));
-//        g.setColor(Color.GREEN);
-//        g.fillRect((int)(x-radio),(int)(y-radio),2*(int)radio,2*(int)radio);
+        g.setColor(Color.darkGray);
+        g.drawOval((int) (x - radio), (int) (y - radio), (int) (2 * radio), (int) (2 * radio));
+
+
     }
     
     public Rectangle getRect(){
@@ -100,7 +102,7 @@ public class Pelota {
         float pelotaMinX = contenedor.minX + radio;
         float pelotaMinY = contenedor.minY + radio;
         float pelotaMaxX = contenedor.maxX - radio;
-        float pelotaMaxY = contenedor.maxY - radio;
+        float pelotaMaxY = contenedor.maxY - radio - 75;
 
         x += velX;
         y -= velY;
