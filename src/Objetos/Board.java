@@ -8,6 +8,13 @@ package Objetos;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -46,9 +53,6 @@ public class Board extends JPanel implements ActionListener, MouseListener {
         caja[2] = new Caja(252, 125, 25, 3, Color.white, Color.orange);
         contenedor = new Contenedor(0, 0, 600, 700);
         
-        
-
-        
     }
     
     public void setAngulo(MouseEvent e){
@@ -61,10 +65,24 @@ public class Board extends JPanel implements ActionListener, MouseListener {
 
     @Override
     public void paintComponent(Graphics g) {
-
-        super.paintComponent(g);
         
+//        BufferedImage img = null;
+//        try {
+//             img = ImageIO.read(new URL("https://camo.envatousercontent.com/593f6d8bd17c8d035874b560cbee8f529cd826d5/687474703a2f2f677764616462616e6e6572732e636f6d2f5265662d42616e6e6572732f3030322e6a7067"));
+//        } catch (IOException ex) {
+//            System.out.println("URL error");
+//        }
+
+//********Para cargar un anuncio se llamaria el url del anuncio y se colocaria en pantalla,
+//********pero por algun motivo al cargarlo desde una url la jugabilidad del juego diminuye demasiado.
+//********entonces unicamente se cargara la imagen desde los archivos del proyecto.
+//*********************************************************************************************************
+        super.paintComponent(g);
+        Image fondo = loadImage("unal_1.jpg");
+        Image ad = loadImage("ad.jpg");
         contenedor.draw(g);
+        g.drawImage(ad, 0, 0, null);
+        g.drawImage(fondo, 0, 100, null);
         for (Caja caja1 : caja) {
             caja1.draw(g);  
         }
@@ -73,19 +91,23 @@ public class Board extends JPanel implements ActionListener, MouseListener {
       
     }
 
-
+ public Image loadImage(String imageName){
+        ImageIcon ii = new ImageIcon(imageName);
+        Image image = ii.getImage();
+        return image;
+    }
     
     public void colisionCaja(){
         for(int i = 0; i < caja.length; i++){
         if(pelota.getRect().intersects(caja[i].getRect())){
-            if(pelota.getX()<caja[i].getMaxX()+5){
+            if(pelota.getX()<caja[i].getMaxX()){
                pelota.setVelX(-pelota.getVelX());
                caja[i].setContador(caja[i].getContador()-1);
                 
             }
             if(pelota.getY()<caja[i].getMaxY()+15){
                 pelota.setVelY(-pelota.getVelY());
-                System.out.println("Devolverse");
+                
             }
             cont[i]++;
             System.out.println(cont[i]);

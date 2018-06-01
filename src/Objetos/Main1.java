@@ -5,6 +5,10 @@
  */
 package Objetos;
 import java.awt.event.MouseEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Main1 extends JFrame {
@@ -17,6 +21,8 @@ public class Main1 extends JFrame {
     }
     
     private void initUI(){
+        
+        
         add(new Board());
         setSize(600, 700);
         setTitle("BB");

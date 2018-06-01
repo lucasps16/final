@@ -116,7 +116,7 @@ public class Pelota {
         if (y < pelotaMinY) {
             velY = -velY;
             y=pelotaMinY;
-        } else if(y>pelotaMaxY - 25) { //La pelota llega al suelo y se queda quieta
+        } else if(y>pelotaMaxY - 45) { //La pelota llega al suelo y se queda quieta
             velY = 0;
             velX=0;
            
