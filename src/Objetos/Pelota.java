@@ -8,7 +8,7 @@ package Objetos;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import static Objetos.Nivel.click;
+
 /**
  *
  * @author luckm
@@ -16,20 +16,29 @@ import static Objetos.Nivel.click;
 public class Pelota {
 
     float x, y;
+    float vel = 10;
     float velX, velY;
     float radio;
     double angulo;
     private Color color;
     private static final Color DEFAUL_COLOR = Color.white;
 
-    public Pelota(float x, float y, float radio, float vel, double angulo, Color color) {
+    public Pelota(float x, float y, float radio,  float vel, double angulo, Color color) {
         this.x = x;
         this.y = y;
-        this.velX = (float) (7 * Math.cos(Math.toRadians(angulo)));
-        this.velY = (float) (-7 * (float) Math.sin(Math.toRadians(angulo)));
+        this.velX = (float) (this.vel* Math.cos(Math.toRadians(angulo)));
+        this.velY = (float) (-this.vel * (float) Math.sin(Math.toRadians(angulo)));
         this.radio = 10;
         this.color = color;
         this.angulo = angulo; 
+    }
+
+    public float getVel() {
+        return vel;
+    }
+
+    public void setVel(float vel) {
+        this.vel = vel;
     }
 
     public void setRadio(float radio) {

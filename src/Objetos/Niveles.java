@@ -6,7 +6,7 @@
 package Objetos;
 
 
-import static Objetos.prueba.pelotaTemp;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -19,19 +19,15 @@ import javax.swing.ImageIcon;
 import static Objetos.Main1.selecNivel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
-/**
- *
- * @author luckm
- */
+
+
 public class Niveles extends JPanel implements ActionListener, MouseListener {
     
     Nivel1 nivel1  = new Nivel1();
-    Pelota pelota;
+    private Pelota pelota;
     private Pelota pelotaTemp;
     private Contenedor contenedor;
-    private Timer timer;
     private int nCajas;
     private Caja[] caja;
     private int disparos;
@@ -51,7 +47,6 @@ public class Niveles extends JPanel implements ActionListener, MouseListener {
         addMouseListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        this.timer = new Timer(30, this);
         contenedor = new Contenedor(0, 0, 600, 700);
         y = 570;
         //Nivel 1
@@ -65,7 +60,7 @@ public class Niveles extends JPanel implements ActionListener, MouseListener {
             nCajas = nivel1.getnCajas();
             caja = new Caja[nCajas];
             cont = new int[nCajas];
-            pelotaTemp = new Pelota(x, y, radio, vel, 0, Color.white);
+            pelotaTemp = new Pelota(x, y, radio, 10, 0, Color.white);
             for (int i = 0; i < 4; i++) {
                 caja[i] = new Caja(150,posy , 25, nivel1.getGolpesCaja(), Color.white, Color.gray);
                 posy = posy + 25;
@@ -106,6 +101,9 @@ public class Niveles extends JPanel implements ActionListener, MouseListener {
                 posy = posy + 25;
             }
             
+        } else if( selecNivel == 2){
+            //Nivel 2.
+            
         }
         
         
@@ -115,7 +113,7 @@ public class Niveles extends JPanel implements ActionListener, MouseListener {
         
        double angulo = Math.toDegrees(Math.atan2(e.getY()-y, (e.getX()- x)));
         this.angulo = angulo;
-       pelota = new Pelota(x, y, radio, vel, this.angulo, Color.white);
+       pelota = new Pelota(x, y, radio, 10 , this.angulo, Color.white);
         pelotaTemp = pelota;
     }
     
@@ -203,6 +201,7 @@ public class Niveles extends JPanel implements ActionListener, MouseListener {
 //        }  
 //      }
     }
+     
     
     
     public void gameStart() {
@@ -218,6 +217,7 @@ public class Niveles extends JPanel implements ActionListener, MouseListener {
 
                     try {
                         Thread.sleep(30);
+                        
                     } catch (InterruptedException ex) {
                         System.out.println("Wrong!!");
                     }
@@ -235,41 +235,46 @@ public class Niveles extends JPanel implements ActionListener, MouseListener {
         colisionCaja();
         x = (int) pelota.getX();
         y = (int) pelota.getY();
+        ;
        
         
       }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        repaint();
+       
+        
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        pelota.setVelX((float) (10 * Math.cos(Math.toRadians(angulo))));
-        pelota.setVelY((float) (-10 * (float) Math.sin(Math.toRadians(angulo))));
+       
+        pelota.setVelX((float) (pelota.getVel() * Math.cos(Math.toRadians(angulo))));
+        pelota.setVelY((float) (-pelota.getVel() * (float) Math.sin(Math.toRadians(angulo))));
         gameStart();
         disparos --;
+        
+ 
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        click = true;
+        
         System.out.println("Mouse x: " + e.getX() );
         System.out.println("Mouse Y: " + e.getY());
-        System.out.println("Vel:" + vel);
-       setAngulo(e);
-       System.out.println("Angulo: " + -angulo+ "°");
+        setAngulo(e);
+        System.out.println("Angulo: " + -angulo+ "°");
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+       
+        
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        
     }
 
     @Override

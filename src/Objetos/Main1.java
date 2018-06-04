@@ -18,7 +18,6 @@ import javax.swing.*;
 public class Main1 extends JFrame {
     
     Inicio inicio = new Inicio();
-    Nivel nivel = new Nivel();
     Niveles niveles = new Niveles();
     public static int  selecNivel = 0;
     public boolean restart = true;
