@@ -100,7 +100,7 @@ public class Caja {
    }
    
    public Rectangle getRect(){
-       return new Rectangle(minX-5, minY-5, lado +10,lado + 10);
+       return new Rectangle(minX-5, minY-5, lado +5,lado + 5);
    }
    
    public void draw(Graphics g) {
@@ -112,7 +112,7 @@ public class Caja {
       g.drawRect(minX, minY, maxX - minX, maxY - minY);
       g.setColor(Color.BLACK);
       g.setFont(new Font("Arial black", Font.PLAIN, 12));
-      g.drawString("" + contador, minX + lado/2, minY + lado/2);
+      g.drawString("" + contador, minX + lado/2 - 5, minY + lado/2 + 5);
    }
 }
 

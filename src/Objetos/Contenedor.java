@@ -14,9 +14,9 @@ import java.awt.Image;
 
 
 public class Contenedor {
-   int minX, maxX, minY, maxY;  // Box's bounds (package access)
-   private Color colorInterno;   // Box's filled color (background)
-   private Color colorBorde;   // Box's border color
+   int minX, maxX, minY, maxY;  
+   private Color colorInterno;   
+   private Color colorBorde;   
    private static final Color DEFAULT_COLOR_FILLED = Color.BLACK;
    private static final Color DEFAULT_COLOR_BORDER = Color.GRAY;
    

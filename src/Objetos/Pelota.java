@@ -8,7 +8,7 @@ package Objetos;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import static Objetos.Board.click;
+import static Objetos.Nivel.click;
 /**
  *
  * @author luckm
@@ -25,8 +25,8 @@ public class Pelota {
     public Pelota(float x, float y, float radio, float vel, double angulo, Color color) {
         this.x = x;
         this.y = y;
-        this.velX = (float) (vel * Math.cos(Math.toRadians(angulo)));
-        this.velY = (float) (-vel * (float) Math.sin(Math.toRadians(angulo)));
+        this.velX = (float) (7 * Math.cos(Math.toRadians(angulo)));
+        this.velY = (float) (-7 * (float) Math.sin(Math.toRadians(angulo)));
         this.radio = 10;
         this.color = color;
         this.angulo = angulo; 
@@ -122,7 +122,7 @@ public class Pelota {
             velY = 0;
             velX=0;
            
-            click = false;
+            
         }
 
     }
