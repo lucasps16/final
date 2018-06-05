@@ -26,12 +26,12 @@ public class Nivel2{
     }
     
     public Image fondo(){
-        Image fondo = loadImage("/src/images/cyt.jpg"); //Imagen tomada de:  http://www.page.instituto-capaz.org/wp-content/uploads/2016/12/bogota_UNIVERSIDAD-NACIONAL.jpg
+        Image fondo = loadImage("images/cyt.jpg"); //Imagen tomada de:  http://www.page.instituto-capaz.org/wp-content/uploads/2016/12/bogota_UNIVERSIDAD-NACIONAL.jpg
         return fondo;
     }
     
     public Image ad(){
-        Image ad = loadImage("/src/images/ad2.jpg");
+        Image ad = loadImage("images/ad2.jpg");
         return ad;
     }
     

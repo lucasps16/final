@@ -26,12 +26,12 @@ public class Nivel1{
     }
     
     public Image fondo(){
-        Image fondo = loadImage("/src/images/unal_1.jpg"); //Imagen tomada de: https://www.elespectador.com/sites/default/files/unal_1.jpg
+        Image fondo = loadImage("images/unal_1.jpg"); //Imagen tomada de: https://www.elespectador.com/sites/default/files/unal_1.jpg
         return fondo;
     }
     
     public Image ad(){
-        Image ad = loadImage("/src/images/ad2.jpg");
+        Image ad = loadImage("images/ad2.jpg");
         return ad;
     }
     

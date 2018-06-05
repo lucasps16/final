@@ -5,10 +5,12 @@
  */
 package Objetos;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -25,11 +27,12 @@ public class Inicio extends JPanel{
     
     @Override
     public void paintComponent(Graphics g){
+         
         super.paintComponent(g);
         Color verde = new Color(15, 86, 6);
-        Image fondo = loadImage("/src/images/enfermeria.jpg");
+        Image fondo = loadImage("images/enfermeria.jpg");
         g.drawImage(fondo, -80, 0, null);
-        Image titulo = loadImage("/src/images/titulo.png");
+        Image titulo = loadImage("images/titulo.png");
         g.drawImage(titulo, -60, -150, null);
         g.setColor(Color.black);
         g.setFont(new Font("Arial", Font.BOLD, 25));

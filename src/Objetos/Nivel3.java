@@ -26,12 +26,12 @@ public class Nivel3{
     }
     
     public Image fondo(){
-        Image fondo = loadImage("/src/images/unal.jpg"); //Imagen tomada de:  http://unal.edu.co/typo3temp/_processed_/csm_9-img-_bog_mayo6_01_da21e14ea8.jpg
+        Image fondo = loadImage("images/unal.jpg"); //Imagen tomada de:  http://unal.edu.co/typo3temp/_processed_/csm_9-img-_bog_mayo6_01_da21e14ea8.jpg
         return fondo;
     }
     
     public Image ad(){
-        Image ad = loadImage("/src/images/ad2.jpg");
+        Image ad = loadImage("images/ad2.jpg");
         return ad;
     }
     
