@@ -19,6 +19,7 @@ public class Main1 extends JFrame {
     
     Inicio inicio = new Inicio();
     Niveles niveles = new Niveles();
+    Niveles niveles1;
     public static int  selecNivel = 0;
     public boolean restart = true;
     public Main1() {
@@ -58,19 +59,35 @@ public class Main1 extends JFrame {
            int key = e.getKeyCode();
            if (key == KeyEvent.VK_1) {
             selecNivel = 1;
-            
+            remove(inicio);
+            niveles= new Niveles();
+            add(niveles);
+            revalidate();
            }
            
            if (key == KeyEvent.VK_2) {
             selecNivel = 2;
-           }
-           if(key == KeyEvent.VK_3){
-               selecNivel = 3;
-           }
-           remove(inicio);
+            remove(inicio);
             niveles= new Niveles();
             add(niveles);
             revalidate();
+           }
+           if(key == KeyEvent.VK_3){
+               selecNivel = 3;
+               remove(inicio);
+            niveles= new Niveles();
+            add(niveles);
+            revalidate();
+           }
+           
+            if(key == KeyEvent.VK_R){ //Reinicia el juego.
+            remove(niveles);
+                System.out.println("Reload");
+             inicio = new Inicio();
+            add(inicio);
+            revalidate();
+            selecNivel = 0;
+            }
           
         }
         //Cuando se presiona una tecla

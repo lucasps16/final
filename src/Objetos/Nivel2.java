@@ -13,12 +13,12 @@ import javax.swing.JPanel;
  *
  * @author luckm
  */
-public class Nivel1{
-    private int nCajas = 23;
-    private int golpesCaja = 5;
+public class Nivel2{
+    private int nCajas = 112;
+    private int golpesCaja = 8;
     private int disparos = 15;
     private int pX = 301;
-    private int cX = 150;
+    private int cX = 0;
     private int cY = 200;
 
     public int getcY() {
@@ -26,7 +26,7 @@ public class Nivel1{
     }
     
     public Image fondo(){
-        Image fondo = loadImage("unal_1.jpg"); //Imagen tomada de: https://www.elespectador.com/sites/default/files/unal_1.jpg
+        Image fondo = loadImage("cyt.jpg"); //Imagen tomada de:  http://www.page.instituto-capaz.org/wp-content/uploads/2016/12/bogota_UNIVERSIDAD-NACIONAL.jpg
         return fondo;
     }
     

@@ -102,7 +102,7 @@ public class Pelota {
 
     }
     
-    public Rectangle getRect(){
+    public Rectangle getRect(){ //Se utiliza un rectangulo ya que el metodo intersects solo funciona entre rectangulos
         return new Rectangle((int)(x-radio),(int)(y-radio),2*(int)radio,2*(int)radio);
     }
 
