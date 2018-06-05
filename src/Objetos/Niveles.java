@@ -192,7 +192,7 @@ public class Niveles extends JPanel implements ActionListener, MouseListener {
         if(selecNivel > 0){
         super.paintComponent(g);
         contenedor.draw(g);
-        Image robot = loadImage("robot3.png"); //Robot diseñado por Juan Pablo Perez Figueroa
+        Image robot = loadImage("/src/images/robot3.png"); //Robot diseñado por Juan Pablo Perez Figueroa
         g.drawImage(ad, 0, 0, null);
         g.drawImage(fondo, 0, 50, null);
         
